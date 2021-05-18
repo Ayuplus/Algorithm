@@ -256,11 +256,9 @@ public class SingeLinkedList {
      * 合并链表的方法
      */
     public SingeLinkedList copyOf(SingeLinkedList s){
-        Node next = null;
-        boolean flag = false;
         Node temp1 = s.head.next;
         while (temp1 != null) {
-            next = temp1.next;
+            Node next =  temp1.next;
             Node temp2 = this.head;
             while (true){
                 if (temp2.next == null){
