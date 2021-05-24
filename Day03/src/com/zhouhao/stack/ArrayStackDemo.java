@@ -9,7 +9,6 @@ public class ArrayStackDemo {
         as.push(4);
         as.push(5);
         as.push(5);
-        as.list();
         System.out.println(as.pop());
         System.out.println(as.pop());
         System.out.println(as.pop());

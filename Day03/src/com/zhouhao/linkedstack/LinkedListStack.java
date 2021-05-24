@@ -1,7 +1,9 @@
 package com.zhouhao.linkedstack;
 
-import java.util.LinkedList;
 
+/**
+ * 单链表可以让存入的顺序就是反的
+ */
 public class LinkedListStack {
     static class Node{
         private final int val;

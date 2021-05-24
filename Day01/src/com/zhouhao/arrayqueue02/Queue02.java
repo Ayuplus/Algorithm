@@ -5,7 +5,7 @@ package com.zhouhao.arrayqueue02;
  * 数组模拟队列优化版
  * @author
  */
-public class Queue {
+public class Queue02 {
     /**
      *
      * @maxSize 环形队列长度 约定默认的队列长度为maxSize-1
@@ -18,9 +18,9 @@ public class Queue {
     private int rear;
     private final int[] arr;
 
-    public Queue(int maxSize){
+    public Queue02(int maxSize){
         //用构造器初始化环形队列
-        this.maxSize = maxSize+1;
+        this.maxSize = maxSize;
         arr = new int[this.maxSize];
     }
     //判断队列是否为空
@@ -31,10 +31,10 @@ public class Queue {
     //判断队列是否已满
     public boolean isFull(){
         /**
-         * maxSize保证结果不为负数
-         * 假定 队列长5 队列尾指向2 队列头指向 1
+         * maxSize保证结果不超过队列最大长度
+         * 假定 队列长5 队列尾指向5 队列头指向 1
          */
-        return (rear+1+maxSize-front)%maxSize == front;
+        return (rear + 1) % maxSize == front;
     }
 
     public void addElement(int num){
@@ -54,28 +54,28 @@ public class Queue {
         front = (front + 1) % maxSize;
         return temp;
     }
-
+    //查看队列第一个元素
     public int getHeadElement(){
         if (isEmpty()){
             throw new RuntimeException("队列已空");
         }
         return arr[front];
     }
+    //遍历环形队列
     public void listQueue(){
         if (isEmpty()){
             System.out.println("队列为空");
             return;
         }
+        //遍历起点为front,遍历次数为队列长度
         for (int i = front; i < front + size(); i++) {
             System.out.print(arr[i % maxSize]+"\t");
         }
         System.out.println();
     }
 
-    public int size(){
-        if (isEmpty()){
-            return 0;
-        }
+    //获取队列长度
+    public int  size(){
         return (rear + maxSize - front)% maxSize;
     }
 

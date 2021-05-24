@@ -20,11 +20,11 @@ public class CircleLinkedList {
             Node node = new Node(i);
             //当插入第一个节点时,初始化first
             if (i == 1){
-                //first指向第一个节点
+                //第一个节点赋值给first
                 first = node;
                 //为了形成环形,next先指向自己
                 first.next = first;
-                //first不能动.因此需要一个辅助指针来增加元素
+                //first不能移动,因此需要一个辅助指针来增加元素
                 tmp = first;
             }else {
                 /**
@@ -92,7 +92,7 @@ public class CircleLinkedList {
         }
         /**
          * 当指定从第startNo个开始时,first和temp要向后移动startNo - 1下
-         *
+         * 例: 当一共5个人,从第2个开始,此时first指向1,应后移(2-1)此来让first处于起点,temp在first之前用于删除节点
          */
         for (int i = 0; i < startNo - 1; i++) {
             first = first.next;
@@ -106,7 +106,6 @@ public class CircleLinkedList {
              * 此时first指向的就是要删除的节点,先打印出first的值,再让first指向first的下一节点(first.next),
              * 再将temp的下一节点(temp.next)指向first,最后没有变量指向原来的first,first会自动被回收(被删除)
              */
-
             for (int i = 0; i < countNum - 1; i++) {
                 first = first.next;
                 temp = temp.next;

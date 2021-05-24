@@ -42,14 +42,11 @@ public class SingeLinkedList {
             return;
         }
         //利用头节点作为辅助指针
-        Node temp = head;
-        while (true){
+        Node temp = head.next;
+        while (temp != null) {
             //当temp到达链表的最后节点时,即为null,表示没有元素可遍历了,退出循环
-            if (temp.next == null){
-                break;
-            }
             //打印下个节点的信息
-            System.out.println(temp.next);
+            System.out.println(temp);
             //指针移动
             temp = temp.next;
         }
@@ -108,20 +105,15 @@ public class SingeLinkedList {
         //判断节点是否存在的标志
         boolean flag = false;
         Node temp = head.next;
-        while (true){
-            //当temp为null时,表示到达最后节点,打破循环
-            if (temp == null){
-                break;
-            }
+        //当temp为null时,表示到达最后节点,打破循环
+        while (temp != null){
             //当节点no与新节点的no相等时,temp是要修改的节点
             if (node.no == temp.no){
                 flag = true;
                 break;
             }
-
             temp = temp.next;
         }
-
         if(flag){
             temp.name = node.name;
             temp.nickname = node.nickname;
@@ -152,7 +144,9 @@ public class SingeLinkedList {
             }
             temp = temp.next;
         }
+        //此时辅助指针指向要删除的前一个节点
         if (flag){
+            //将辅助指针的next域指向要删除节点的下个节点,删除节点没有任何东西指向它后会被垃圾回收器回收
             temp.next = temp.next.next;
         }else {
             System.out.println("删除的节点不存在");
@@ -192,7 +186,7 @@ public class SingeLinkedList {
         }
         //辅助指针表示
         Node temp = head.next;
-        //长度减去k,得到辅助指针要移动的次数   size:5  k=2 移动三次得到第四个数据,即倒数第2个
+        //长度减去k,得到辅助指针要移动的次数   size:5  k=2 temp表示第一个元素,移动三次得到第四个数据,即倒数第2个
         for (int i = 0; i < this.getLength()-k ; i++) {
             temp = temp.next;
         }
@@ -208,14 +202,13 @@ public class SingeLinkedList {
         }
         //定义一个辅助指针(变量)
         Node temp = head.next;
-        //定义一个变量为辅助节点的下一节点(为了遍历)
-        Node next = null;
+
         //定义一个新的头节点存储倒序的节点
         Node newHead = new Node(0,null,null);
         //利用辅助指针遍历整个链表
         while ( temp != null ){
-            //用next接收temp下一节点
-            next = temp.next;
+            ////定义一个变量为辅助节点的下一节点(为了遍历),用next接收temp下一节点
+            Node next = temp.next;
             /**
              * 将新节点的next先赋给temp的next(关键)
              * newHead.next第一次是null,之后始终指向上一个添加的节点
@@ -224,7 +217,8 @@ public class SingeLinkedList {
              */
             temp.next = newHead.next;
             newHead.next = temp;
-            //遍历
+
+            //指针移动
             temp = next;
         }
         //最后用head.next指向newHead.next(因为遍历用的是head)
