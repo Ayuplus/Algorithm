@@ -34,7 +34,7 @@ public class Queue {
          * maxSize保证结果不为负数
          * 假定 队列长5 队列尾指向2 队列头指向 1
          */
-        return (rear+1+maxSize-front)%maxSize == front;
+        return (rear+1+maxSize)%maxSize == front;
     }
 
     public void addElement(int num){

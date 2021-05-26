@@ -88,16 +88,21 @@ public class CalculatorTest02 {
                 //弹出两个元素,与当前符号运算
                 int num1 = Integer.parseInt(stack.pop());
                 int num2 = Integer.parseInt(stack.pop());
-                if (s.equals("+")){
-                    res = num1 + num2;
-                }else if (s.equals("-")){
-                    res = num2 - num1;
-                }else if (s.equals("*")){
-                    res = num1*num2;
-                }else if (s.equals("/")){
-                    res = num2/num1;
-                }else {
-                    throw new RuntimeException("运算符有误");
+                switch (s) {
+                    case "+":
+                        res = num1 + num2;
+                        break;
+                    case "-":
+                        res = num2 - num1;
+                        break;
+                    case "*":
+                        res = num1 * num2;
+                        break;
+                    case "/":
+                        res = num2 / num1;
+                        break;
+                    default:
+                        throw new RuntimeException("运算符有误");
                 }
                 //运算结果再压入栈中
                 stack.push(res+"");
